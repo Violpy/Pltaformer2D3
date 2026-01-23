@@ -192,11 +192,16 @@ public class SceneController : MonoBehaviour
 
     public void RestartLevel()
     {
+        Time.timeScale = 1f;
         string currentScene = SceneManager.GetActiveScene().name;
         SceneManager.LoadScene(currentScene == "GameOver" ? "HUD" : currentScene);
     }
 
-    public void GoToMainMenu() => SceneManager.LoadScene("MainMenu");
+    public void GoToMainMenu() {
+        Time.timeScale = 1f;
+        
+     SceneManager.LoadScene("MainMenu");
+    }
 
     public void ToggleSound()
     {
