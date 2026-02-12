@@ -8,6 +8,8 @@ public class SceneController : MonoBehaviour
 
     [Header("Audio & Visual")]
     public AudioSource musicSource;
+    public AudioSource sfxSource;
+    
     [Range(0.1f, 10f)]
     public float stabilizationValue = 5f;
 
@@ -30,26 +32,49 @@ public class SceneController : MonoBehaviour
     public Slider volumeSlider;
     public Slider stabilizationSlider;
 
+    [Header("SFX Library")]
+    public AudioClip jumpSound;
+    public AudioClip collectSound;
+    public AudioClip deathSound;
+    public AudioClip winSound;
+    public AudioClip clickSound;
+
     void Awake()
+
     {
+
         if (instance == null)
+
         {
+
             instance = this;
+
             DontDestroyOnLoad(gameObject);
+
             ApplyLoadedSettings();
+
         }
+
         else if (instance != this)
+
         {
+
             Destroy(instance.gameObject);
+
             instance = this;
+
             DontDestroyOnLoad(gameObject);
+
             return;
+
         }
+
     }
 
     void Start()
     {
         ApplyLoadedSettings();
+        AssignButtonSounds();
     }
 
     void OnEnable()
@@ -64,69 +89,63 @@ public class SceneController : MonoBehaviour
 
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        // Пытаемся найти AudioSource, если он потерялся при переходе
+        // Поиск музыки и SFX на новой сцене
         if (musicSource == null)
         {
             GameObject musicObj = GameObject.Find("music");
             if (musicObj != null) musicSource = musicObj.GetComponent<AudioSource>();
         }
+
+        if (sfxSource == null)
+        {
+            GameObject sfxObj = GameObject.Find("sfx");
+            if (sfxObj != null) sfxSource = sfxObj.GetComponent<AudioSource>();
+        }
         
+        SetupSliders();
         ApplyLoadedSettings(); 
+        AssignButtonSounds();
     }
 
-    public void ToggleSettings(bool isOpen)
-    {
-        if (settingsPanel == null)
-        {
-            settingsPanel = GameObject.Find("Canvas")?.transform.Find("SettingsPanel")?.gameObject;
-            
-            if (settingsPanel == null)
-            {
-                GameObject[] all = Resources.FindObjectsOfTypeAll<GameObject>();
-                foreach (var obj in all)
-                {
-                    if (obj.name == "SettingsPanel")
-                    {
-                        settingsPanel = obj;
-                        break;
-                    }
-                }
-            }
-        }
+    // --- ОСНОВНЫЕ МЕТОДЫ ---
 
-        if (settingsPanel != null)
+    private void AssignButtonSounds()
+    {
+        Button[] allButtons = Resources.FindObjectsOfTypeAll<Button>();
+        foreach (Button btn in allButtons)
         {
-            settingsPanel.SetActive(isOpen);
-            Time.timeScale = isOpen ? 0f : 1f;
-            if (isOpen) SetupSliders();
+            btn.onClick.RemoveListener(PlayClickSound); 
+            btn.onClick.AddListener(PlayClickSound);
+        }
+    }
+
+    private void PlayClickSound() 
+    {
+        PlaySFX(clickSound);
+    }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        if (clip != null && sfxSource != null)
+        {
+            sfxSource.PlayOneShot(clip);
         }
     }
 
     private void ApplyLoadedSettings()
-{
-    float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
-    stabilizationValue = PlayerPrefs.GetFloat("Stabilization", 5f);
-
-    if (musicSource == null)
     {
-        GameObject musicObj = GameObject.Find("music");
-        if (musicObj != null) musicSource = musicObj.GetComponent<AudioSource>();
-    }
+        float savedVolume = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+        stabilizationValue = PlayerPrefs.GetFloat("Stabilization", 5f);
 
-    if (musicSource != null)
-    {
-        musicSource.volume = savedVolume;
-
-        if (!musicSource.isPlaying)
+        if (musicSource != null)
         {
-            musicSource.Play();
+            musicSource.volume = savedVolume;
+            if (!musicSource.isPlaying) musicSource.Play();
         }
     }
-}
 
     private void SetupSliders()
     {
-        // Ищем слайдеры по именам, если ссылки в инспекторе пустые
         if (volumeSlider == null) volumeSlider = GameObject.Find("Slider vol")?.GetComponent<Slider>();
         if (stabilizationSlider == null) stabilizationSlider = GameObject.Find("Slider stab")?.GetComponent<Slider>();
 
@@ -145,6 +164,8 @@ public class SceneController : MonoBehaviour
         }
     }
 
+    // --- ПУБЛИЧНЫЕ МЕТОДЫ ДЛЯ КНОПОК (НЕ МЕНЯТЬ НАЗВАНИЯ) ---
+
     public void ApplyVolume(float val)
     {
         if (musicSource != null) musicSource.volume = val;
@@ -157,10 +178,7 @@ public class SceneController : MonoBehaviour
 
     public void SaveSettings()
     {
-        if (musicSource != null)
-        {
-            PlayerPrefs.SetFloat("MusicVolume", musicSource.volume);
-        }
+        if (musicSource != null) PlayerPrefs.SetFloat("MusicVolume", musicSource.volume);
         PlayerPrefs.SetFloat("Stabilization", stabilizationValue);
         PlayerPrefs.Save();
         ToggleSettings(false);
@@ -176,6 +194,19 @@ public class SceneController : MonoBehaviour
         SetupSliders();
     }
 
+    public void ToggleSettings(bool isOpen)
+    {
+        if (settingsPanel == null)
+            settingsPanel = GameObject.Find("Canvas")?.transform.Find("SettingsPanel")?.gameObject;
+
+        if (settingsPanel != null)
+        {
+            settingsPanel.SetActive(isOpen);
+            Time.timeScale = isOpen ? 0f : 1f;
+            if (isOpen) SetupSliders();
+        }
+    }
+
     public void TogglePause(bool isPaused)
     {
         if (pausePanel == null) pausePanel = GameObject.Find("PausePanel");
@@ -184,23 +215,6 @@ public class SceneController : MonoBehaviour
             pausePanel.SetActive(isPaused); 
             Time.timeScale = isPaused ? 0f : 1f; 
         }
-    }
-
-    public void ContinueScene() => TogglePause(false);
-
-    public void LoadSpecificScene(string sceneName) => SceneManager.LoadScene(sceneName);
-
-    public void RestartLevel()
-    {
-        Time.timeScale = 1f;
-        string currentScene = SceneManager.GetActiveScene().name;
-        SceneManager.LoadScene(currentScene == "GameOver" ? "HUD" : currentScene);
-    }
-
-    public void GoToMainMenu() {
-        Time.timeScale = 1f;
-        
-     SceneManager.LoadScene("MainMenu");
     }
 
     public void ToggleSound()
@@ -212,12 +226,44 @@ public class SceneController : MonoBehaviour
         if (soundIconImage != null) soundIconImage.sprite = newVol > 0 ? soundOnSprite : soundOffSprite;
     }
 
-    public void ToggleStabilization()
+    public void ContinueScene() => TogglePause(false);
+    public void LoadSpecificScene(string sceneName) => SceneManager.LoadScene(sceneName);
+
+    // Вызывай этот метод, когда игрок заходит на уровень (в Start уровня)
+public void SaveCurrentLevelName()
+{
+    string name = SceneManager.GetActiveScene().name;
+    if (name != "GameOver" && name != "MainMenu")
     {
-        float newStab = stabilizationValue > 0 ? 0 : 5f;
-        ApplyStabilization(newStab);
-        if (stabilizationSlider != null) stabilizationSlider.value = newStab;
-        if (stabIconImage != null) stabIconImage.sprite = newStab > 0 ? stabOnSprite : stabOffSprite;
+        PlayerPrefs.SetString("LastLevel", name);
+        PlayerPrefs.Save();
+    }
+}
+
+public void RestartLevel()
+{
+    Time.timeScale = 1f;
+    string currentScene = SceneManager.GetActiveScene().name;
+
+    // Если мы в меню GameOver, нужно понять, какой уровень перезагрузить.
+    // Если же мы на самом уровне (через меню паузы), просто перезагружаем текущую сцену.
+    if (currentScene == "GameOver")
+    {
+        // Загружаем сохраненное имя последнего уровня (или HUD по умолчанию)
+        string lastLevel = PlayerPrefs.GetString("LastLevel", "HUD"); 
+        SceneManager.LoadScene(lastLevel);
+    }
+    else
+    {
+        // Если нажали "Restart" в меню паузы прямо на уровне
+        SceneManager.LoadScene(currentScene);
+    }
+}
+
+    public void GoToMainMenu() 
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void QuitGame()

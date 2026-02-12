@@ -23,17 +23,25 @@ public class MockGameState : MonoBehaviour
 
     public void AddMoon()
     {
-        if(moons < 10)
+        if(moons < 3)
         {
         moons++;
         UpdateHUD();
-        if(moons >= 10)
+        SceneController.instance.PlaySFX(SceneController.instance.collectSound);
+        if(moons >= 3)
         {
             Invoke("TriggerWIN", 0.8f); 
         }
+        if (moons >= 3)
+        {
+            SceneController.instance.PlaySFX(SceneController.instance.winSound);        }
         }
     }
-
+    public void ResetMoons()
+{
+    moons = 0;
+    UpdateHUD();
+}
     public void DecreaseHP()
     {
         if (hp > 0)
@@ -48,6 +56,7 @@ public class MockGameState : MonoBehaviour
         }
     }
 
+    
     public void TriggerGameOver()
     {
         SceneController.instance.LoadSpecificScene("GameOver");
@@ -66,6 +75,6 @@ public class MockGameState : MonoBehaviour
     }
     public void UpdateHUD()
     {
-        moonCounterText.text = $"{moons}/10"; 
+        moonCounterText.text = $"{moons}/3"; 
     }
 }

@@ -25,9 +25,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6812222119797646207}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.2035706, y: 2.2035706, z: 2.2035706}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -44,3 +44,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cbad59cc47b8dd4b89d42fc0aa5f1ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
+  musicSource: {fileID: 0}
+  sfxSource: {fileID: 0}
+  stabilizationValue: 5
+  volumeValue: 0.5
+  settingsPanel: {fileID: 0}
+  pausePanel: {fileID: 0}
+  soundIconImage: {fileID: 0}
+  soundOnSprite: {fileID: 8023777996216889834, guid: aec20f07894496d4b8d2821edc051e10, type: 3}
+  soundOffSprite: {fileID: 2799733053189807859, guid: 19b150561d99495488a2163c432d8d8d, type: 3}
+  stabIconImage: {fileID: 0}
+  stabOnSprite: {fileID: 6176935302179600805, guid: 46f8023ea3972e2408f99543c2a2c257, type: 3}
+  stabOffSprite: {fileID: 1689827169458567786, guid: 8161aeb79eaef9943bf11db2f3e66cbc, type: 3}
+  volumeSlider: {fileID: 0}
+  stabilizationSlider: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: 675d2cabae4446444b803d7f254f0f47, type: 3}
+  collectSound: {fileID: 8300000, guid: 075108a2a73888d48b5199886b613ebf, type: 3}
+  deathSound: {fileID: 8300000, guid: 654e5bd7716f5f64eb97b40716611c72, type: 3}
+  winSound: {fileID: 8300000, guid: ac8dceb681d02404f95fa27559a78c81, type: 3}
+  clickSound: {fileID: 8300000, guid: 281223732e0d0bd40a4677ef1ed3fd82, type: 3}

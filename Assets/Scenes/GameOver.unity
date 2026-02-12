@@ -119,6 +119,72 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &166984987
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2138835209197589918, guid: 33939a2dcbbe0514ea3f8994d072ab08, type: 3}
+      propertyPath: m_Volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2888610628480704960, guid: 33939a2dcbbe0514ea3f8994d072ab08, type: 3}
+      propertyPath: m_Name
+      value: sfx
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573898461985111433, guid: 33939a2dcbbe0514ea3f8994d072ab08, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 486.734
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573898461985111433, guid: 33939a2dcbbe0514ea3f8994d072ab08, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 197.49841
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573898461985111433, guid: 33939a2dcbbe0514ea3f8994d072ab08, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573898461985111433, guid: 33939a2dcbbe0514ea3f8994d072ab08, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573898461985111433, guid: 33939a2dcbbe0514ea3f8994d072ab08, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573898461985111433, guid: 33939a2dcbbe0514ea3f8994d072ab08, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573898461985111433, guid: 33939a2dcbbe0514ea3f8994d072ab08, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573898461985111433, guid: 33939a2dcbbe0514ea3f8994d072ab08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573898461985111433, guid: 33939a2dcbbe0514ea3f8994d072ab08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8573898461985111433, guid: 33939a2dcbbe0514ea3f8994d072ab08, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 33939a2dcbbe0514ea3f8994d072ab08, type: 3}
+--- !u!82 &166984988 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 2138835209197589918, guid: 33939a2dcbbe0514ea3f8994d072ab08, type: 3}
+  m_PrefabInstance: {fileID: 166984987}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &266021526
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,7 +214,7 @@ RectTransform:
   m_GameObject: {fileID: 266021526}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1527842, y: 0.1527842, z: 0.1527842}
+  m_LocalScale: {x: 0.44449508, y: 0.44449508, z: 0.44449508}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1875492960}
@@ -156,7 +222,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 248, y: -147}
+  m_AnchoredPosition: {x: 721.5, y: -427.66}
   m_SizeDelta: {x: 844, y: 291}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &266021528
@@ -319,10 +385,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -405,7 +471,7 @@ RectTransform:
   m_GameObject: {fileID: 896706041}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1527842, y: 0.1527842, z: 0.1527842}
+  m_LocalScale: {x: 0.44449508, y: 0.44449508, z: 0.44449508}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1442120811}
@@ -413,7 +479,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -246, y: -147}
+  m_AnchoredPosition: {x: -715.68, y: -427.66}
   m_SizeDelta: {x: 844, y: 291}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &896706043
@@ -718,6 +784,10 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 9109550476729391181, guid: ca54598414ae97546aee6f3c0a1795df, type: 3}
+      propertyPath: sfxSource
+      value: 
+      objectReference: {fileID: 166984988}
+    - target: {fileID: 9109550476729391181, guid: ca54598414ae97546aee6f3c0a1795df, type: 3}
       propertyPath: musicSource
       value: 
       objectReference: {fileID: 1842304256}
@@ -993,7 +1063,7 @@ RectTransform:
   m_GameObject: {fileID: 1563705254}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8375, y: 0.8375, z: 0.8375}
+  m_LocalScale: {x: 2.4365387, y: 2.4365387, z: 2.4365387}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 421473721}
@@ -1282,14 +1352,14 @@ RectTransform:
   m_GameObject: {fileID: 1928378707}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2.9093, y: 2.9093, z: 2.9093}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 421473721}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -229, y: 84}
+  m_AnchoredPosition: {x: -666.22, y: 244.38}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1928378709
@@ -1481,3 +1551,4 @@ SceneRoots:
   - {fileID: 1167327092}
   - {fileID: 1842304255}
   - {fileID: 2079618171}
+  - {fileID: 166984987}

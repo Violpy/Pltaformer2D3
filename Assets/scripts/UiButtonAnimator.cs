@@ -73,6 +73,7 @@ public class UIButtonAnimator : MonoBehaviour, IPointerEnterHandler, IPointerExi
             ColorUtility.TryParseHtmlString("#FFF300", out Color hoverColor);
             buttonText.color = hoverColor;
         }
+        
         }
     }
 

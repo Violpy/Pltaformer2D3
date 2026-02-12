@@ -6,6 +6,17 @@ TagManager:
   tags:
   - Settings
   - SettingsPanel
+  - player
+  - enemy
+  - moon
+  - trap
+  - ground
+  - Trap
+  - Ground
+  - Enemy
+  - Checkpoint
+  - Moon
+  - KillZone
   layers:
   - Default
   - TransparentFX
